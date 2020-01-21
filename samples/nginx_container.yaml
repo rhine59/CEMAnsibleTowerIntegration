@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tasks:
+    - name: check docker containers running before starting {{ nginxname }} container
+      command: docker ps
+      become: true
+      register: out
+
+    - debug: var=out.stdout_lines
+
+    - name: Run a command to start docker nginx container
+      command: docker run --name={{ nginxname }} -p {{ nginxport }}:80 -d nginx 
+      become: true
+
+    - name: check {{ nginxname }} container status
+      command: docker ps -f name={{ nginxname }}
+      become: true
+      register: finalout
+    
+    - debug: var=finalout.stdout_lines

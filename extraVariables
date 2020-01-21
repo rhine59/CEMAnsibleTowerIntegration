@@ -1,0 +1,13 @@
+ExtraVariables
+{ "nginxport" : "11003" , "nginxname" : "acmenginx" }
+Credentials
+[ 3 ] 
+
+
+credentials from console link
+
+Credentials > Select User > Look at Browser URL as below
+
+https://fs20atsrv.169.62.229.236.nip.io/#/credentials/3 
+
+
