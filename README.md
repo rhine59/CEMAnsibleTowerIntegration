@@ -18,7 +18,7 @@ admin / grey-hound-red-cardinal
 3. Create a Credential - “root” credential is already created.
 4. Setting up a Project 
 5. Create a Job Template
-6. Launch a Job
+6. Trigger the Job 
 
 ### 4. Setting up a Project 
 
@@ -63,6 +63,7 @@ CREDENTIALS (prompt at launch check box)
 
 ![job details](images/2020/01/job-details.png)
 
+### 6. Trigger the Job from MCM RunBook
 MCM - `Monitor Health` > `Incidents` > `Administration` > `RunBooks Configured`
 
 ![runbooks configured](images/2020/01/runbooks-configured.png)
