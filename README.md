@@ -125,7 +125,7 @@ Make sure you add a `PASSWORD` for your user
 
 ![user password](images/2020/01/user-password.png)
 
-If you do NOY do this, then you will get ...
+If you do NOT do this, then you will get ...
 
 ![passwords needed to start](images/2020/01/passwords-needed-to-start.png)
 
