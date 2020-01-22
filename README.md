@@ -81,15 +81,18 @@ Change `AnsibleTower/samples/nginx_container.yaml` to parameterise `port` and `c
 
 ### 2. Create or copy an Ansible Template
 
+we are going to use `install-nginx-e1`
+
 ![ansible template](images/2020/01/ansible-template.png)
 
-Complete details
+Complete details of
 
-NAME
-PROJECT
-PLAYBOOK
-CREDENTIALS (prompt at launch check box)
-
+```
+- NAME
+- PROJECT
+- PLAYBOOK
+- CREDENTIALS (prompt at launch check box)
+```
 ![job details](images/2020/01/job-details.png)
 
 ### 3. Trigger the Job from MCM RunBook
