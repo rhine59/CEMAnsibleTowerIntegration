@@ -2,17 +2,32 @@
 
 [Ansible Tower](https://fs20atsrv.169.62.229.236.nip.io/#/home)
 
-admin / grey-hound-red-cardinal
+credentials `admin / grey-hound-red-cardinal`
 
 Target Machine `ssh -i private_key root@169.62.229.200`
 
 Ansible Users `user1` > `user50` password `alpine-has-acorn-valley`
 
-[Cloud Event Manager](https://fs20icamlb.169.61.23.248.nip.io:8443)
+`user1` > `user50` password `alpine-has-acorn-valley`
 
-admin / grey-hound-red-cardinal
+[ICP Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
+
+credentials `admin / grey-hound-red-cardinal`
+
+[Cloud Event Manager](https://icp-console.apps.169.61.23.248.nip.io/cemui/administration)
 
 ## Setup and Ansible Project   
+
+## Ansible Tower Configuration - Step by Step
+
+1. Create an Inventory - “Demo Setup” Inventory is already created
+2. Create a Host - “169.62.229.200” target host is already created.
+3. Create a Credential - “root” credential is already created.
+4. Setting up a Project
+5. Create a Job Template
+6. Trigger the Job
+
+### 1. Setting up a Project
 
 Link Project to Git Repository
 
@@ -28,24 +43,21 @@ Change `AnsibleTower/samples/nginx_container.yaml` to parameterise `port` and `c
 ---
 - hosts: all
   tasks:
-    - name: check docker containers running before starting {{ nginxname }} container
-      command: docker ps
-      become: true
-      register: out
-
-    - debug: var=out.stdout_lines
-
-    - name: Run a command to start docker nginx container
+    - name: Run a command to start nginx container
       command: docker run --name={{ nginxname }} -p {{ nginxport }}:80 -d nginx
       become: true
 
-    - name: check {{ nginxname }} container status
+    - name: check {{ nginxname }} container status running on {{ nginxport }}
       command: docker ps -f name={{ nginxname }}
       become: true
       register: finalout
+    - debug: var=finalout.stdout_lines
+
+    - debug:
+        msg: Access Nginx using http://169.62.229.200:{{ nginxport }}
 ```
 
-Create or copy an Ansible Template
+### 2. Create or copy an Ansible Template
 
 ![ansible template](images/2020/01/ansible-template.png)
 
@@ -57,6 +69,8 @@ PLAYBOOK
 CREDENTIALS (prompt at launch check box)
 
 ![job details](images/2020/01/job-details.png)
+
+### 3. Trigger the Job from MCM RunBook
 
 MCM - `Monitor Health` > `Incidents` > `Administration` > `RunBooks Configured`
 
@@ -82,6 +96,10 @@ Get user index from web URL
 `https://fs20atsrv.169.62.229.236.nip.io/#/credentials/3`
 
 Note that the index for `user01` is `3`
+
+Make sure you add a `PASSWORD` for your user
+
+![user password](images/2020/01/user-password.png)
 
 From CEM `New Automation` you can provide default values or provide at runtime. I will provide a default value for the user but not the `port` or `container name`
 
