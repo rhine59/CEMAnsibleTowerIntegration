@@ -1,15 +1,12 @@
 # CEM / Ansible Tower Integration worked example
 
 [Ansible Tower](https://fs20atsrv.169.62.229.236.nip.io/#/home)
-
 admin / grey-hound-red-cardinal
 
 Target Machine `ssh -i private_key root@169.62.229.200`
-
 `user1` > `user50` password `alpine-has-acorn-valley`
 
-[Cloud Event Manager](https://fs20icamlb.169.61.23.248.nip.io:8443)
-
+[Cloud Event Manager](https://icp-console.apps.169.61.23.248.nip.io/cemui/administration)
 admin / grey-hound-red-cardinal
 
 ## Ansible Tower Configuration - Step by Step
