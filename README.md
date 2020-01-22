@@ -6,15 +6,15 @@ admin / grey-hound-red-cardinal
 
 Target Machine `ssh -i private_key root@169.62.229.200`
 
-`user1` > `user50` password `alpine-has-acorn-valley`
+Ansible Users `user1` > `user50` password `alpine-has-acorn-valley`
 
 [Cloud Event Manager](https://fs20icamlb.169.61.23.248.nip.io:8443)
 
 admin / grey-hound-red-cardinal
 
-## Setup and Ansible Project
+## Setup and Ansible Project   
 
-Link Project to Git Repo
+Link Project to Git Repository
 
 ![project to git](images/2020/01/project-to-git.png)
 
