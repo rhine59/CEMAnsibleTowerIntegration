@@ -1,5 +1,16 @@
 # CEM / Ansible Tower Integration worked example
 
+<!-- TOC -->
+
+- [CEM / Ansible Tower Integration worked example](#cem--ansible-tower-integration-worked-example)
+  - [Ansible Tower Configuration - Step by Step](#ansible-tower-configuration---step-by-step)
+    - [0. Prerequisites](#0-prerequisites)
+    - [1. Setting up a Project](#1-setting-up-a-project)
+    - [2. Create or copy an Ansible Template](#2-create-or-copy-an-ansible-template)
+    - [3. Trigger the Job from MCM RunBook](#3-trigger-the-job-from-mcm-runbook)
+
+<!-- /TOC -->
+
 [Ansible Tower](https://fs20atsrv.169.62.229.236.nip.io/#/home)
 
 credentials `admin / grey-hound-red-cardinal`
@@ -16,8 +27,6 @@ credentials `admin / grey-hound-red-cardinal`
 
 [Cloud Event Manager](https://icp-console.apps.169.61.23.248.nip.io/cemui/administration)
 
-## Setup and Ansible Project   
-
 ## Ansible Tower Configuration - Step by Step
 
 1. Create an Inventory - “Demo Setup” Inventory is already created
@@ -26,6 +35,16 @@ credentials `admin / grey-hound-red-cardinal`
 4. Setting up a Project
 5. Create a Job Template
 6. Trigger the Job
+
+### 0. Prerequisites
+
+Setup `sudo` on the host running the target workloads.
+
+```
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+%docker	ALL=(ALL:ALL) NOPASSWD:ALL
+```
 
 ### 1. Setting up a Project
 
@@ -80,7 +99,6 @@ MCM - `Monitor Health` > `Incidents` > `Administration` > `RunBooks Configured`
 
 ![new automation](images/2020/01/new-automation.png)
 
-
 ![new ansible tower](images/2020/01/new-ansible-tower.png)
 
 select `playbook` from Ansible `project`
@@ -100,6 +118,12 @@ Note that the index for `user01` is `3`
 Make sure you add a `PASSWORD` for your user
 
 ![user password](images/2020/01/user-password.png)
+
+If you do NOY do this, then you will get ...
+
+![passwords needed to start](images/2020/01/passwords-needed-to-start.png)
+
+`passwords_needed_to_start` errors!
 
 From CEM `New Automation` you can provide default values or provide at runtime. I will provide a default value for the user but not the `port` or `container name`
 
