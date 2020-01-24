@@ -106,3 +106,63 @@ root@fs20icamtest:~# docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                   NAMES
 1cd2eab239db        nginx               "nginx -g 'daemon of…"   2 minutes ago       Up 2 minutes        0.0.0.0:11013->80/tcp   acmenginx
 ```
+
+So from the CEM console from the ICP console.
+
+`Monitor Health` > `Incidents` > `Administration`
+
+![CEM launch](images/2020/01/cem-launch.png)
+
+takes you to
+
+![administration](images/2020/01/administration.png)
+
+The go to `runbooks`
+
+Check out that under `Connections` we have a valid connection to `Ansible Tower`
+
+![good connection](images/2020/01/good-connection.png)
+
+Go to `Automations` and create a `New Automation`
+
+![new automation1](images/2020/01/new-automation1.png)
+
+Note that we coule edit the `extraVariables` to provide some defaults for what comes
+
+![edit defaults](images/2020/01/edit-defaults.png)
+
+Complete the details for both start and stop activities
+
+![start and stop](images/2020/01/start-and-stop.png)
+
+SO let's now execure this `runbook` from CEM.
+
+![runbook run](images/2020/01/runbook-run.png)
+
+Select the `test` icon to right of the `nginx_container_start` automation.
+
+This is where we have to provide the variable for this Job
+
+![provide variables](images/2020/01/provide-variables.png)
+
+we will provide variable values to this job
+
+```
+{ "nginxport" : "11003" , "nginxname" : "acmenginx" }
+```
+
+![apply and run nginx](images/2020/01/apply-and-run-nginx.png)
+
+and then finally ...
+
+from the coloured icon
+
+![coloured](images/2020/01/coloured.png)
+
+we select `run`
+
+![run final](images/2020/01/run-final.png)
+
+The automation runs to completion OK
+
+![start ok](images/2020/01/start-ok.png)
