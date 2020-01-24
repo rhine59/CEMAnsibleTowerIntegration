@@ -135,7 +135,7 @@ Complete the details for both start and stop activities
 
 ![start and stop](images/2020/01/start-and-stop.png)
 
-SO let's now execure this `runbook` from CEM.
+So let's now execute this `runbook` from CEM.
 
 ![runbook run](images/2020/01/runbook-run.png)
 
