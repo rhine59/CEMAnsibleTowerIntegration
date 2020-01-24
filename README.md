@@ -14,21 +14,11 @@
 
 ## Access details
 
-[Ansible Tower](https://fs20atsrv.169.62.229.236.nip.io/#/home)
-
-credentials `admin / grey-hound-red-cardinal`
-
-Target Machine `ssh -i private_key root@169.62.229.200`
-
-Ansible Users `user1` > `user50` password `alpine-has-acorn-valley`
-
-`user1` > `user50` password `alpine-has-acorn-valley`
-
 [ICP Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
 
-credentials `admin / grey-hound-red-cardinal`
-
 [Cloud Event Manager](https://icp-console.apps.169.61.23.248.nip.io/cemui/administration)
+
+`user1` > `user50` password `alpine-has-acorn-valley`
 
 ## Ansible Tower Configuration - Step by Step
 
