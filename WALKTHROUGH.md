@@ -166,3 +166,10 @@ we select `run`
 The automation runs to completion OK
 
 ![start ok](images/2020/01/start-ok.png)
+
+```
+root@fs20icamtest:~# docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                   NAMES
+1ddaaef79229        nginx               "nginx -g 'daemon of…"   2 minutes ago       Up 2 minutes        0.0.0.0:11003->80/tcp   acmenginx
+root@fs20icamtest:~#
+```
