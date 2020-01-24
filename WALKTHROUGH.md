@@ -1,6 +1,12 @@
 # Walkthrough of Ansible Tower.
 
-We will not provide direct access to Ansible Tower here, but rtaher, we will show you what we have set up to use from CEM
+<!-- TOC -->
+
+- [Walkthrough of Ansible Tower.](#walkthrough-of-ansible-tower)
+
+<!-- /TOC -->
+
+We will not provide direct access to Ansible Tower here, but rather, we will show you what we have set up to use from CEM
 
 We have a `project` that is linked to a Git Repository
 
