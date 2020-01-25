@@ -219,7 +219,7 @@ Click "Publish"
 
 ![new-runbook-nginx-start-variables](images/2020/01/new-runbook-nginx-start-variables.png)
 
-![new-runbook-nginx-start-variables1](images/2020/01/new-runbook-nginx-start-variables1.png)
+![new-runbook-nginx-start-variables1](images/2020/01/new-runbook-nginx-start-variables2.png)
 
 Add another Runbook to stop Nginx
 
@@ -240,7 +240,7 @@ Click Save & Apply on the Popup
 Click "Publish"
 ```
 
-![new-runbook-nginx-stop-variables1](images/2020/01/new-runbook-nginx-stop-variables1.png)
+![new-runbook-nginx-stop-variables1](images/2020/01/new-runbook-nginx-stop-variables2.png)
 
 Runbooks will be published and available in Library
 
