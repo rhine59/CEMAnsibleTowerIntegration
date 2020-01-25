@@ -219,7 +219,7 @@ Click "Publish"
 
 ![new-runbook-nginx-start-variables](images/2020/01/new-runbook-nginx-start-variables.png)
 
-![new-runbook-nginx-start-variables](images/2020/01/new-runbook-nginx-start-variables1.png)
+![new-runbook-nginx-start-variables1](images/2020/01/new-runbook-nginx-start-variables1.png)
 
 Add another Runbook to stop Nginx
 
@@ -240,9 +240,10 @@ Click Save & Apply on the Popup
 Click "Publish"
 ```
 
-![new-runbook-nginx-stop-variables](images/2020/01/new-runbook-nginx-stop-variables1.png)
+![new-runbook-nginx-stop-variables1](images/2020/01/new-runbook-nginx-stop-variables1.png)
 
 Runbooks will be published and available in Library
+
 ![new-runbook-nginx-list](images/2020/01/new-runbook-nginx-list.png)
 
 
@@ -261,11 +262,11 @@ Make sure nginxname and nginx port variables are populated as per the user label
 { "nginxport" : "110XX" , "nginxname" : "userXX-nginx" }
 Click "Apply and Run"
 Select "userXX-nginx-container-start" and Click Run
-Click Complete and Rate your Runbook
 ```
 ![trigger-runbook-nginx-start](images/2020/01/trigger-runbook-nginx-start2.png)
 
 See the Results and Access the Nginx URL http://169.62.229.200:110XX
+Click Complete and Rate your Runbook
 
 ![results-runbook-nginx-start](images/2020/01/results-runbook-nginx-start.png)
 
@@ -276,9 +277,8 @@ Make sure nginxname and nginx port variables are populated as per the user label
 { "nginxname" : "userXX-nginx" }
 Click "Apply and Run"
 Select "userXX-nginx-container-stop" and Click Run
-Click Complete and Rate your Runbook
 ```
-
+Click Complete and Rate your Runbook
 ![results-runbook-nginx-stop](images/2020/01/results-runbook-nginx-stop.png)
 
 All done :) 
