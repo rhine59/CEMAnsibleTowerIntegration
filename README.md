@@ -7,38 +7,41 @@
 - [CEM / Ansible Tower Integration worked example](#cem--ansible-tower-integration-worked-example)
   - [Access details](#access-details)
   - [Ansible Tower Configuration - Walkthru Step by Step](#ansible-tower-configuration---walkthru-step-by-step)
-    - [1. View Project](#view-project)
-    - [2. View Ansible Templates](#view-ansible-templates)
-  - [CEM Configuration - Step by Step Guide](#ansible-tower-configuration---step-by-step)
+    - [View Project](#add-project)
+    - [View Ansible Templates](#add-templates)
+    - [Run Templates](#run-templates)
+  - [CEM Configuration - Step by Step Guide](#cem-configuration---step-by-step-guide)
+    - [Ansible Tower Connection](#ansible-tower-connection)
+    - [View Ansible Templates](#add-templates)
+    - [Run Templates](#run-templates)
+
+
 
 <!-- /TOC -->
 
 ## Access details
 
-[ICP Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
+[MCM Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
 
 [Cloud Event Manager](https://icp-console.apps.169.61.23.248.nip.io/cemui/administration)
 
-[Ansible Tower View Access] (https://fs20atsrv.169.62.229.236.nip.io/)
+[Ansible Tower View Access](https://fs20atsrv.169.62.229.236.nip.io/)
 `user1` > `user50` password `alpine-has-acorn-valley`
 
 ## Ansible Tower Configuration - Walkthru Step by Step
 
 We will not provide edit access to Ansible Tower here, but rather show you what we have set up to use from CEM.
 
-1. View Inventory - “Demo Setup” Inventory is already created
-2. View Host - “169.62.229.200” target host is already added in Inventory.
-3. View Credential - “root” credential is already created for hosts.
-4. View Project - "FastStartLabs2020" is already created
-5. View Ansible Templates - "nginx-container-start" and "nginx-container-stop" are already created.
+1. Add Inventory - “Demo Setup” Inventory is already created
+2. Add Host - “169.62.229.200” target host is already added in Inventory
+3. Add Credential - “root” credential is already created for hosts
+4. Add Project - "FastStartLabs2020" is already created
+5. Add Ansible Templates - "nginx-container-start" and "nginx-container-stop" are already created
+6. Trigger the Templates to test
 
-### View Project
+### Add Project
 
 We have a `project` that is linked to a Git Repository
-
-![ansible project](images/2020/01/ansible-project.png)
-
-Create a new project
 
 ![create new project](images/2020/01/create-new-project.png)
 
@@ -53,12 +56,14 @@ The `https://github.com/rhine59/CEMAnsibleTowerIntegration.git` Git Repo contain
 └── nginx_uninstall.yaml
 ```
 
-### View Ansible Templates
+### Add Templates
 Click `Templates` in Ansible menu
+
+We create a new Ansible `Job Template`
 
 ![job template](images/2020/01/job-template.png)
 
-View the details
+Complete the details. Inventory, Project, Playbook and Credentials. 
 
 ![template details](images/2020/01/template-details.png)
 
@@ -96,6 +101,7 @@ Also the right of the template definition we ask to prompt for these values.
 
 ![prompt for values](images/2020/01/prompt-for-values.png)
 
+### Run Templates
 So we are going run these templates.
 
 ![template list](images/2020/01/template-list.png)
@@ -139,9 +145,12 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 1cd2eab239db        nginx               "nginx -g 'daemon of…"   2 minutes ago       Up 2 minutes        0.0.0.0:11013->80/tcp   acmenginx
 ```
 
-So from the CEM console from the ICP console.
 
-`Monitor Health` > `Incidents` > `Administration`
+## CEM Configuration - Step by Step Guide
+
+[MCM Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
+
+So from the MCM console `Monitor Health` > `Incidents` > `Administration`
 
 ![CEM launch](images/2020/01/cem-launch.png)
 
@@ -151,21 +160,37 @@ takes you to
 
 The go to `runbooks`
 
+### Ansible Tower Connection
+
 Check out that under `Connections` we have a valid connection to `Ansible Tower`
 
 ![good connection](images/2020/01/good-connection.png)
 
-Go to `Automations` and create a `New Automation`
+### Create Automations
 
-![new automation1](images/2020/01/new-automation1.png)
+Go to `Automations` and Add `New Automation`
 
-Note that we coule edit the `extraVariables` to provide some defaults for what comes
+Select Type as "Ansible Tower"
+Name as "userXX-nginx-container-start" - Change the User label provided to you in Lab
+Job Template as "nginx-container-start"
+
+![new automation1](images/2020/01/new-automation-nginx-start.png)
+
+Note that we could edit the `extraVariables` to provide some defaults for what comes. No action here as variables will be passed thru RunBook.
 
 ![edit defaults](images/2020/01/edit-defaults.png)
 
+Add another automation to Stop container
+
+Select Type as "Ansible Tower"
+Name as "userXX-nginx-container-stop" - Change the User label provided to you in Lab
+Job Template as "nginx-container-stop"
+
+![new automation2](images/2020/01/new-automation-nginx-stop.png)
+
 Complete the details for both start and stop activities
 
-![start and stop](images/2020/01/start-and-stop.png)
+![start and stop](images/2020/01/automation-nginx-list.png)
 
 So let's now execute this `runbook` from CEM.
 
@@ -213,90 +238,5 @@ root@fs20icamtest:~#
 
 
 
-
-
-
-
-
-### 3. Trigger the Job from MCM RunBook
-
-MCM - `Monitor Health` > `Incidents` > `Administration` > `RunBooks Configured`
-
-![runbooks configured](images/2020/01/runbooks-configured.png)
-
-> `Automations`
-
-![new automation](images/2020/01/new-automation.png)
-
-![new ansible tower](images/2020/01/new-ansible-tower.png)
-
-select `playbook` from Ansible `project`
-
-![select playbook](images/2020/01/select-playbook.png)
-
-Get Ansible `user` details
-
-![ansible user](images/2020/01/ansible-user.png)
-
-Get user index from web URL
-
-`https://fs20atsrv.169.62.229.236.nip.io/#/credentials/3`
-
-Note that the index for `user01` is `3`
-
-Make sure you add a `PASSWORD` for your user
-
-![user password](images/2020/01/user-password.png)
-
-If you do NOT do this, then you will get ...
-
-![passwords needed to start](images/2020/01/passwords-needed-to-start.png)
-
-`passwords_needed_to_start` errors!
-
-From CEM `New Automation` you can provide default values or provide at runtime. I will provide a default value for the user but not the `port` or `container name`
-
-![default values](images/2020/01/default-values.png)
-
-![user01](images/2020/01/user01.png)
-
-save away and see
-
-![new automation created](images/2020/01/new-automation-created.png)
-
-Select `test` against our new `automation`
-
-![test new automation](images/2020/01/test-new-automation.png)
-
-See we have one default value but others have to be completed
-
-![default and to be completed](images/2020/01/default-and-to-be-completed.png)
-
-value have to be valid json
-
-`{ "nginxport" : "11033" , "nginxname" : "ACMEnginx" }`
-
-Complete, apply and then run
-
-![Apply and run](images/2020/01/apply-and-run.png)
-
-![options](images/2020/01/options.png)
-
-![run](images/2020/01/run.png)
-
-Now look at the finished result
-
-![finished result](images/2020/01/finished-result.png)
-
-Here is our running containers
-
-```
-*** System restart required ***
-Last login: Tue Jan 21 15:59:20 2020 from 169.62.229.236
-root@fs20icamtest:~# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                   NAMES
-2e5a2e47e0b3        nginx               "nginx -g 'daemon of…"   About a minute ago   Up About a minute   0.0.0.0:11033->80/tcp   ACMEnginx
-ac0d4851025e        nginx               "nginx -g 'daemon of…"   43 minutes ago       Up 43 minutes       0.0.0.0:11122->80/tcp   user22-nginx
-```
 
 All done!
