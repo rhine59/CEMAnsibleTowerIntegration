@@ -12,12 +12,11 @@
     - [Run Templates](#run-templates)
   - [CEM Configuration - Step by Step Guide](#cem-configuration---step-by-step-guide)
     - [Ansible Tower Connection](#ansible-tower-connection)
-    - [View Ansible Templates](#add-templates)
-    - [Run Templates](#run-templates)
-
-
+    - [Create RunBooks in Library](#create-runbooks-in-library)
+    - [Execute RunBooks in Library](#execute-runbooks-in-library)
 
 <!-- /TOC -->
+
 
 ## Access details
 
@@ -146,6 +145,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 
 
+
 ## CEM Configuration - Step by Step Guide
 
 [MCM Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
@@ -170,9 +170,11 @@ Check out that under `Connections` we have a valid connection to `Ansible Tower`
 
 Go to `Automations` and Add `New Automation`
 
+```
 Select Type as "Ansible Tower"
-Name as "userXX-nginx-container-start" - Change the User label provided to you in Lab
-Job Template as "nginx-container-start"
+Enter name as "userXX-nginx-container-start" - Change XX with User label provided to you in Lab
+Select Job Template as "nginx-container-start"
+```
 
 ![new automation1](images/2020/01/new-automation-nginx-start.png)
 
@@ -182,61 +184,101 @@ Note that we could edit the `extraVariables` to provide some defaults for what c
 
 Add another automation to Stop container
 
+```
 Select Type as "Ansible Tower"
-Name as "userXX-nginx-container-stop" - Change the User label provided to you in Lab
-Job Template as "nginx-container-stop"
+Enter name as "userXX-nginx-container-stop" - Change XX with User label provided to you in Lab
+Select Job Template as "nginx-container-stop"
+```
 
 ![new automation2](images/2020/01/new-automation-nginx-stop.png)
 
 Complete the details for both start and stop activities
 
-![start and stop](images/2020/01/automation-nginx-list.png)
+![start and stop2](images/2020/01/automation-nginx-list.png)
 
-So let's now execute this `runbook` from CEM.
 
-![runbook run](images/2020/01/runbook-run.png)
+### Create RunBooks in Library
 
-Select the `test` icon to right of the `nginx_container_start` automation.
-
-This is where we have to provide the variable for this Job
-
-![provide variables](images/2020/01/provide-variables.png)
-
-we will provide variable values to this job
+Go to `Library` and Add `New Runbook`
 
 ```
-{ "nginxport" : "11003" , "nginxname" : "acmenginx" }
+Enter name as "userXX-nginx-start" - Change XX with User label provided to you in Lab
+Add automation "userXX-nginx-container-start"
 ```
+![new-runbook-nginx-start](images/2020/01/new-runbook-nginx-start.png)
 
-![apply and run nginx](images/2020/01/apply-and-run-nginx.png)
-
-and then finally ...
-
-from the coloured icon
-
-![coloured](images/2020/01/coloured.png)
-
-we select `run`
-
-![run final](images/2020/01/run-final.png)
-
-The automation runs to completion OK
-
-![start ok](images/2020/01/start-ok.png)
+Popup will appear to enter extraVariables.
 
 ```
-root@fs20icamtest:~# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                   NAMES
-1ddaaef79229        nginx               "nginx -g 'daemon of…"   2 minutes ago       Up 2 minutes        0.0.0.0:11003->80/tcp   acmenginx
-root@fs20icamtest:~#
+select "New Runbook Parameter"
+Enter Default value as { "nginxport" : "110XX" , "nginxname" : "userXX-nginx" }
+Change XX with User label provided to you in Lab
+Click Save & Apply on the Popup
+Click "Publish"
 ```
 
+![new-runbook-nginx-start-variables](images/2020/01/new-runbook-nginx-start-variables.png)
+
+![new-runbook-nginx-start-variables](images/2020/01/new-runbook-nginx-start-variables1.png)
+
+Add another Runbook to stop Nginx
+
+```
+Enter name as "userXX-nginx-stop" - Change XX with User label provided to you in Lab
+Add automation "userXX-nginx-container-stop"
+```
+
+![new-runbook-nginx-stop](images/2020/01/new-runbook-nginx-stop.png)
+
+Popup will appear to enter extraVariables.
+
+```
+select "New Runbook Parameter"
+Enter Default value as { "nginxname" : "userXX-nginx" }
+Change XX with User label provided to you in Lab
+Click Save & Apply on the Popup
+Click "Publish"
+```
+
+![new-runbook-nginx-stop-variables](images/2020/01/new-runbook-nginx-stop-variables1.png)
+
+Runbooks will be published and available in Library
+![new-runbook-nginx-list](images/2020/01/new-runbook-nginx-list.png)
 
 
+### Execute RunBooks in Library
 
+So let's now execute the `runbook` from CEM.
 
+```
+Select "userXX-nginx-start" and Click on Run Icon as shown below
+```
 
+![trigger-runbook-nginx-start](images/2020/01/trigger-runbook-nginx-start.png)
 
+```
+Make sure nginxname and nginx port variables are populated as per the user labels provided to you in Lab
+{ "nginxport" : "110XX" , "nginxname" : "userXX-nginx" }
+Click "Apply and Run"
+Select "userXX-nginx-container-start" and Click Run
+Click Complete and Rate your Runbook
+```
+![trigger-runbook-nginx-start](images/2020/01/trigger-runbook-nginx-start2.png)
 
+See the Results and Access the Nginx URL http://169.62.229.200:110XX
 
-All done!
+![results-runbook-nginx-start](images/2020/01/results-runbook-nginx-start.png)
+
+Run the "userXX-nginx-stop" Runbook
+
+```
+Make sure nginxname and nginx port variables are populated as per the user labels provided to you in Lab
+{ "nginxname" : "userXX-nginx" }
+Click "Apply and Run"
+Select "userXX-nginx-container-stop" and Click Run
+Click Complete and Rate your Runbook
+```
+
+![results-runbook-nginx-stop](images/2020/01/results-runbook-nginx-stop.png)
+
+All done :) 
