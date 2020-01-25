@@ -10,7 +10,7 @@
     - [View Project](#add-project)
     - [View Ansible Templates](#add-templates)
     - [Run Templates](#run-templates)
-  - [CEM Configuration - Step by Step Lab Guide](#cem-configuration---step-by-step-lab-guide)
+  - [CEM Configuration - Lab Guide](#cem-configuration---lab-guide)
     - [Ansible Tower Connection](#ansible-tower-connection)
     - [Create RunBooks in Library](#create-runbooks-in-library)
     - [Execute RunBooks in Library](#execute-runbooks-in-library)
@@ -146,7 +146,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 
 
-## CEM Configuration - Step by Step Lab Guide
+## CEM Configuration - Lab Guide
 
 [MCM Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
 
