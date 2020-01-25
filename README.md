@@ -6,11 +6,11 @@
 
 - [CEM / Ansible Tower Integration worked example](#cem--ansible-tower-integration-worked-example)
   - [Access details](#access-details)
-  - [Ansible Tower Configuration - Walkthru Step by Step](#ansible-tower-configuration---walkthru-step-by-step)
+  - [Ansible Tower Configuration - Walkthru Demo Only](#ansible-tower-configuration---walkthru-demo-only)
     - [View Project](#add-project)
     - [View Ansible Templates](#add-templates)
     - [Run Templates](#run-templates)
-  - [CEM Configuration - Step by Step Guide](#cem-configuration---step-by-step-guide)
+  - [CEM Configuration - Step by Step Lab Guide](#cem-configuration---step-by-step-lab-guide)
     - [Ansible Tower Connection](#ansible-tower-connection)
     - [Create RunBooks in Library](#create-runbooks-in-library)
     - [Execute RunBooks in Library](#execute-runbooks-in-library)
@@ -27,7 +27,7 @@
 [Ansible Tower View Access](https://fs20atsrv.169.62.229.236.nip.io/)
 `user1` > `user50` password `alpine-has-acorn-valley`
 
-## Ansible Tower Configuration - Walkthru Step by Step
+## Ansible Tower Configuration - Walkthru Demo Only
 
 We will not provide edit access to Ansible Tower here, but rather show you what we have set up to use from CEM.
 
@@ -146,7 +146,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 
 
-## CEM Configuration - Step by Step Guide
+## CEM Configuration - Step by Step Lab Guide
 
 [MCM Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
 
