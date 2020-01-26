@@ -20,19 +20,20 @@
 
 ## Access details
 
-[MCM Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
+[MCM Login](https://icp-console.apps.169.61.23.248.nip.io)
 
-[Cloud Event Manager](https://icp-console.apps.169.61.23.248.nip.io/cemui/administration)
+`user1` > `user50` password `alpine-has-acorn-valley`
 
-[Ansible Tower View Access](https://fs20atsrv.169.62.229.236.nip.io/)
+[Ansible Tower](https://fs20atsrv.169.62.229.236.nip.io/)
+
 `user1` > `user50` password `alpine-has-acorn-valley`
 
 ## Ansible Tower Configuration - Walkthru Demo Only
 
 We will not provide edit access to Ansible Tower here, but rather show you what we have set up to use from CEM.
 
-1. Add Inventory - “Demo Setup” Inventory is already created
-2. Add Host - “169.62.229.200” target host is already added in Inventory
+1. Add Inventory - “Demo Setup” Inventory already created
+2. Add Host - “169.62.229.200” target host already added in Inventory
 3. Add Credential - “root” credential is already created for hosts
 4. Add Project - "FastStartLabs2020" is already created
 5. Add Ansible Templates - "nginx-container-start" and "nginx-container-stop" are already created
@@ -62,7 +63,7 @@ We create a new Ansible `Job Template`
 
 ![job template](images/2020/01/job-template.png)
 
-Complete the details. Inventory, Project, Playbook and Credentials. 
+Complete the details. Inventory, Project, Playbook and Credentials.
 
 ![template details](images/2020/01/template-details.png)
 
@@ -281,4 +282,4 @@ Select "userXX-nginx-container-stop" and Click Run
 Click Complete and Rate your Runbook
 ![results-runbook-nginx-stop](images/2020/01/results-runbook-nginx-stop.png)
 
-All done :) 
+All done :)
