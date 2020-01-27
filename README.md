@@ -210,7 +210,7 @@ Add automation "userXX-nginx-container-start"
 ```
 ![new-runbook-nginx-start](images/2020/01/new-runbook-nginx-start.png)
 
-Popup will appear to enter extraVariables.
+Popup will appear to enter extraVariables. (If the popoup doesn't appear, click on "userXX-nginx-container-start" and select `Configure`)
 
 ```
 select "New Runbook Parameter"
@@ -233,7 +233,7 @@ Add automation "userXX-nginx-container-stop"
 
 ![new-runbook-nginx-stop](images/2020/01/new-runbook-nginx-stop.png)
 
-Popup will appear to enter extraVariables.
+Popup will appear to enter extraVariables. (If the popoup doesn't appear, click on "userXX-nginx-container-stop" and select `Configure`)
 
 ```
 select "New Runbook Parameter"
