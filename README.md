@@ -147,9 +147,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 1cd2eab239db        nginx               "nginx -g 'daemon of…"   2 minutes ago       Up 2 minutes        0.0.0.0:11013->80/tcp   acmenginx
 ```
 
-
-
-## CEM Configuration - Lab Guide
+## CEM Configuration - Student Guide
 
 [MCM Login](https://icp-console.apps.169.61.23.248.nip.io/oidc/login.jsp)
 
