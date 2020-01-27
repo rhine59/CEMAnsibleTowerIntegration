@@ -1,5 +1,7 @@
 # CEM / Ansible Tower Integration worked example
 
+![title](images/2020/01/title.png)
+
 [GitHub Page](https://rhine59.github.io/CEMAnsibleTowerIntegration/)
 
 <!-- TOC -->
