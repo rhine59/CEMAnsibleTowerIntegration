@@ -51,11 +51,11 @@ The `https://github.com/rhine59/CEMAnsibleTowerIntegration.git` Git Repo contain
 ├── README.md
 ├── nginx_container_start.yaml
 ├── nginx_container_stop.yaml
-├── nginx_install.yaml
-└── nginx_uninstall.yaml
+
 ```
 
 ### Add Templates
+
 Click `Templates` in Ansible menu
 
 We create a new Ansible `Job Template`
@@ -101,6 +101,7 @@ Also the right of the template definition we ask to prompt for these values.
 ![prompt for values](images/2020/01/prompt-for-values.png)
 
 ### Run Templates
+
 So we are going run these templates.
 
 ![template list](images/2020/01/template-list.png)
