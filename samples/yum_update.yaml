@@ -2,6 +2,6 @@
 - hosts: all
   tasks:
     - name: update the system
-        yum:
-          name: "*"
-          state: latest
+      yum:
+        name: "*"
+        state: latest
