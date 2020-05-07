@@ -1,0 +1,25 @@
+---
+
+########################################
+## Ansible Playbook for installing Nginx
+########################################
+
+- name: check registered the repository of nginx-release
+  shell: rpm -qa | grep nginx-release
+  register: result
+  ignore_errors: True
+  always_run: yes
+  changed_when: no
+- name: add repository nginx-release (CentOS6/CentOS7)
+  yum: name="http://nginx.org/packages/centos/{{ansible_distribution_major_version}}/noarch/RPMS/nginx-release-centos-{{ansible_distribution_major_version}}-0.el{{ansible_distribution_major_version}}.ngx.noarch.rpm"
+  when: result|failed
+
+- name: disable the repository (pls set --enablerepo=nginx if you use it)
+  replace: dest=/etc/yum.repos.d/nginx.repo regexp="enabled *= *1" replace="enabled=0"
+  ignore_errors: True
+
+- name: install nginx
+  yum: name=nginx state=present enablerepo=nginx
+
+- name: Start Nginx
+  service: name=nginx enabled=yes state=started
